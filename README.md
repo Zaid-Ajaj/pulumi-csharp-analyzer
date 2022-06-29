@@ -32,6 +32,16 @@ Which effectively adds the following package reference to your project file
 
 ![](screenshots/resource-inside-apply.png)
 
+### VS Code and OmniSharp
+
+Can't see the warnings when writing Pulumi programs in C# inside VS Code? Make sure you have roslyn analyzers enabled in the settings of OmniSharp:
+
+![](screenshots/roslyn-settings.png)
+
+Now you should see the analyzer warnings:
+
+![](screenshots/vscode-warnings.png)
+
 ### Developing the project
 
 ```bash
