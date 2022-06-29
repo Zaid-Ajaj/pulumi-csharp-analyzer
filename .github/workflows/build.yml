@@ -1,0 +1,26 @@
+name: build and test
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+    - 'README.md'
+env:
+  DOTNET_VERSION: '6.0.x'
+jobs:
+  build-and-test:
+    name: build-and-test-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Build
+      run: dotnet run --project ./build/Build.fsproj -- build
+    - name: Test
+      run: dotnet run --project ./build/Build.fsproj -- test
